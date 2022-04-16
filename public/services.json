@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Dhaka to Cox's Bazar",
+        "price": "5000",
+        "description": "Cox's Bazar beach is the longest sea beaches in the world. It’s a sandy beach with an unbroken 155 Km length. The sea beach is the main attraction of the Cox's Bazar town.",
+        "img": "https://i.ibb.co/HtSQy44/cox-s-bazar.png"
+    },
+    {
+        "id": 2,
+        "name": "Dhaka to Sajek Valley",
+        "price": "4000",
+        "description": "Sajek is one of the few place in bangladesh ,which is really natural wonder and natural paradise.Sajek valley is known for its natural environment and is surrounded by mountains.",
+        "img": "https://i.ibb.co/4gwBmY8/sajek.png"
+    },
+    {
+        "id": 3,
+        "name": "Dhaka to Tanguar Haor",
+        "price": "5000",
+        "description": "Tanguar Haor is a river basin which is located at the Tahirpur Upazila of Sunamgonj district in Sylhet Division. Its takes roughly 6-7 hours to reach here from Dhaka.",
+        "img": "https://i.ibb.co/nbyYD22/Tanguar-Haor.png"
+    }
+]
