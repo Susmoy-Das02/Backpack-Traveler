@@ -4,7 +4,10 @@ import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -29,6 +32,10 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
+    if (loading || sending) {
+        return <Loading></Loading>
+    }
+
 
     if (user) {
         navigate(from, { replace: true });
@@ -37,7 +44,7 @@ const Login = () => {
 
     if (error) {
 
-        errorElement = 
+        errorElement =
             <p className='text-danger'>Error: {error.message}</p>
     }
 
@@ -55,10 +62,16 @@ const Login = () => {
 
     }
 
-    const resetPassword = async() =>{
+    const resetPassword = async () => {
         const email = emailRef.current.value;
-        await sendPasswordResetEmail(email);
-        alert('sent email');
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('sent email');
+        }
+        else{
+            toast('please enter your email address');
+        }
+
 
     }
 
@@ -67,7 +80,7 @@ const Login = () => {
     return (
         <div className='container w-50 mx-auto'>
             <h2 className=' text-info text-center mt-2'>Please login</h2>
-            <Form  onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
@@ -84,8 +97,9 @@ const Login = () => {
             {errorElement}
             <p>New to Backpack traveler ?<Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister} >Please Register</Link> </p>
 
-            <p>Forgate password ?<Link to='/register' className='text-primary text-decoration-none' onClick={resetPassword}>Reset password</Link> </p>
+            <p>Forgate password ?<button className='btn btn-link text-primary text-decoration-none' onClick={resetPassword}>Reset password</button> </p>
             <SocialLogin></SocialLogin>
+            <ToastContainer />
 
 
 
