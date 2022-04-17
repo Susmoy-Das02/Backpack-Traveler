@@ -1,45 +1,63 @@
-import React, { useRef } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import './Register.css';
+import auth from '../../../firebase.init';
+import { Button } from 'react-bootstrap';
 
 const Register = () => {
-    const nameRef = useRef('');
-    const emailRef = useRef('');
-    const passwordRef = useRef('');
-
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate();
-
-    const navigatelogin = () => {
+    
+    const navigateLogin = () =>{
         navigate('/login');
     }
 
+    if (user) {
+
+        navigate ('/home');
+        
+      }
+
+    const handleRegister = event =>{
+        event.preventDefault();
+
+        const name =event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+
+        createUserWithEmailAndPassword(email,password);
+
+
+
+
+    }
+
+
     return (
-        <div>
-            <div className='container w-50 mx-auto'>
-                <h2 className=' text-info text-center mt-2'>Please register</h2>
-                <Form>
+        <div className='register-form'>
+            <h2 className='text-center text-info'>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <input type="text" name="name" id="" placeholder='Your name' required />
+                <br />
+                <input type="email" name="email" id="" placeholder='Email Address' required/>
+                <br />
+                <input type="password" name="password" id="" placeholder='Password' required />
 
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control ref={nameRef} type="text" placeholder="Your name" required />
-                    </Form.Group>
+                <Button variant="primary" type="submit">
+                    Register
+                </Button>
 
 
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
-                    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-                <p>Already have an acount ?<Link to='/login' className='text-danger text-decoration-none' onClick={navigatelogin} >Please Login</Link> </p>
-            </div>
+            </form>
+            <p>Already have an account? <Link to='/login' className='text-danger pe-auto text-decoration-none ' onClick={navigateLogin}>Please Login</Link></p>
         </div>
     );
 };

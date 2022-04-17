@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -8,16 +10,41 @@ const Login = () => {
     const navigate = useNavigate();
 
 
-    const navigateRegister = event => {
-        navigate('/register')
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
+
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+
+    if (user) {
+        navigate(from, { replace: true });
 
     }
 
-    const handleRegister = event =>{
+    
+
+
+
+    const handleSubmit = event => {
         event.preventDefault();
-        const name = event.target.name.value;
-        const email =  event.target.email.value; 
-        const password = event.target.password.value;
+        const email = emailRef.current.value;
+        const pasword = passwordRef.current.value;
+
+        signInWithEmailAndPassword(email, pasword);
+    }
+
+
+    const navigateRegister = event => {
+        navigate('/register')
+
     }
 
 
@@ -25,7 +52,7 @@ const Login = () => {
     return (
         <div className='container w-50 mx-auto'>
             <h2 className=' text-info text-center mt-2'>Please login</h2>
-            <Form onSubmit={ handleRegister } >
+            <Form  onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
