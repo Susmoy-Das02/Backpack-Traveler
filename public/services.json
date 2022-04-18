@@ -19,5 +19,28 @@
         "price": "5000",
         "description": "Tanguar Haor is a river basin which is located at the Tahirpur Upazila of Sunamgonj district in Sylhet Division. Its takes roughly 6-7 hours to reach here from Dhaka.",
         "img": "https://i.ibb.co/nbyYD22/Tanguar-Haor.png"
+    },
+
+    {
+        "id": 4,
+        "name": "Dhaka to Bandarban",
+        "price": "7000",
+        "description": "The nature setting of this little township rich is tribal heritage. Its flora and fauna, bamboo cottages its ethnic peoples and their life style have made this picturesque hilly resort a popular destination of tourist",
+        "img": "https://i.ibb.co/K9SpDW2/fareed.png"
+    },
+    {
+        "id": 5,
+        "name": "Dhaka to Sylhet",
+        "price": "6000",
+        "description": "Sylhet is one of the best tourist places to visit in Bangladesh. It is also known as Jalalabad which means the spiritual capital. Some also called it the city of saints. ",
+        "img": "https://i.ibb.co/1dtK0GL/sylhet.png"
+    },
+    {
+        "id": 6,
+        "name": "Dhaka to Chittagong",
+        "price": "6000",
+        "description": "Here's a sample itinerary for a drive from Dhaka to Chittagong. If you're planning a road trip to Chittagong, you can research locations to stop along the way. Find the best hotels, restaurants.",
+        "img": "https://i.ibb.co/fdsFZJc/Chittagong.png"
     }
+
 ]
