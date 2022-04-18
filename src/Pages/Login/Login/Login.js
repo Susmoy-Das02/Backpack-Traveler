@@ -8,6 +8,7 @@ import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Login.css';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -78,7 +79,8 @@ const Login = () => {
 
 
     return (
-        <div className='container w-50 mx-auto'>
+        <div className='container w-50 mx-auto padding'>
+            <div>
             <h2 className=' text-info text-center mt-2'>Please login</h2>
             <Form onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -100,6 +102,8 @@ const Login = () => {
             <p>Forgate password ?<button className='btn btn-link text-primary text-decoration-none' onClick={resetPassword}>Reset password</button> </p>
             <SocialLogin></SocialLogin>
             <ToastContainer />
+
+            </div>
 
 
 

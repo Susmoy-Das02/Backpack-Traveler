@@ -2,6 +2,8 @@ import React from 'react';
 
 const Blogs = () => {
     return (
+        <div className='padding'> 
+
         <div>
 
             {/* queston 1 answer */}
@@ -57,6 +59,7 @@ const Blogs = () => {
                 8.Cloud Messaging.<br />
             </p>
 
+            </div>
 
 
 
@@ -64,8 +67,11 @@ const Blogs = () => {
 
 
 
+        
 
         </div>
+
+        
 
 
 

@@ -14,32 +14,32 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const navigate = useNavigate();
-    
-    const navigateLogin = () =>{
+
+    const navigateLogin = () => {
         navigate('/login');
     }
 
-    if(loading){
-        return<Loading></Loading>
+    if (loading) {
+        return <Loading></Loading>
     }
 
     if (user) {
 
-        navigate ('/home');
-        
-      }
+        navigate('/home');
 
-    const handleRegister = event =>{
+    }
+
+    const handleRegister = event => {
         event.preventDefault();
 
-        const name =event.target.name.value;
+        const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
 
 
-        createUserWithEmailAndPassword(email,password);
+        createUserWithEmailAndPassword(email, password);
 
 
 
@@ -49,11 +49,12 @@ const Register = () => {
 
     return (
         <div className='register-form'>
+            <div>
             <h2 className='text-center text-info'>Please Register</h2>
             <form onSubmit={handleRegister}>
                 <input type="text" name="name" id="" placeholder='Your name' required />
                 <br />
-                <input type="email" name="email" id="" placeholder='Email Address' required/>
+                <input type="email" name="email" id="" placeholder='Email Address' required />
                 <br />
                 <input type="password" name="password" id="" placeholder='Password' required />
 
@@ -67,6 +68,7 @@ const Register = () => {
             <p>Already have an account? <Link to='/login' className='text-primary pe-auto text-decoration-none ' onClick={navigateLogin}>Please Login</Link></p>
             <SocialLogin></SocialLogin>
         </div>
+        </div >
         
     );
 };
